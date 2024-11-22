@@ -1,32 +1,29 @@
-<h1>Articles</h1> 
+<h1>Articles</h1>
+
+<%= link_to 'New Article', new_article_path, class: 'btn btn-primary' %>
 
 <table>
   <thead>
     <tr>
-      <th>ID</th>
       <th>Title</th>
-      <th>Body</th>
+      <th>Content</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
- 
-
-          <!-- Show Link -->
-          <%= link_to 'Comment', article_path(article) %> |
-          <!-- Edit Link -->
-          <%= link_to 'Edit', edit_article_path(article) %> |
-          <!-- Delete Link -->
-          <%= link_to "Delete", article_path(article), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.body %></td>
+        <td>
+          <%= link_to 'Show', article_path(article), class: 'btn btn-info' %>
+          <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-warning' %>
+          <%= link_to 'Delete', article_path(article), 
+                      method: :delete, 
+                      data: { confirm: 'Are you sure?' }, 
+                      class: 'btn btn-danger' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<!-- Link to Create a New Article -->
-<%= link_to 'New Article', new_article_path %>+
-
